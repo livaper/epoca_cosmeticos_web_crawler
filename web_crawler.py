@@ -20,7 +20,7 @@ corpo_banho = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000070%2
 unhas = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000013%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
 descontos = 'http://www.epocacosmeticos.com.br/buscapagina?fq=H%3a377&O=OrderByBestDiscountDESC&PS=48&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
 lancamentos = 'http://www.epocacosmeticos.com.br/buscapagina?fq=H%3a136&O=OrderByNameDESC&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
-brindes = 'http://www.epocacosmeticos.com.br/ganhe-brindes#'
+brindes = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000199%2f&PS=16&sl=3d564047-8ff1-4aa8-bacd-f11730c3fce6&cc=4&sm=0&PageNumber='
 
 
 
