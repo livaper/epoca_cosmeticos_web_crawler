@@ -34,7 +34,7 @@ output: BeautifulSoup parser instantiated
 """
 
 
-def get_parser(url):
+def _get_parser(url):
     source_code = requests.get(url)
     html = source_code.text
     return BeautifulSoup(html)
@@ -49,8 +49,8 @@ output: tuple containing product name and title
 """
 
 
-def get_product_name_and_title(item_url):
-    parser = get_parser(item_url)
+def _get_product_name_and_title(item_url):
+    parser = _get_parser(item_url)
     for product_title in parser.findAll('head'):
         product_title = product_title.title.string
     for product_name in parser.findAll('div', {'class': 'productName'}):
@@ -69,13 +69,13 @@ output: Set of Products from a category
 
 def category_crawler(url):
     page = 1
-    parser = get_parser(url + str(page))
+    parser = _get_parser(url + str(page))
     product_set = set()
 
     #while parser.find('div', {'class': 'shelf-default'}) != None:
     for link in parser.findAll('a', {'class': 'shelf-default__product-name'}):
         product_url = link.get('href')
-        (product_name, product_title) = get_product_name_and_title(product_url)
+        (product_name, product_title) = _get_product_name_and_title(product_url)
         product = Product(product_url, product_name, product_title)
         product_set.add(product)
 
