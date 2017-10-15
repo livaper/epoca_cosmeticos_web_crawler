@@ -9,6 +9,7 @@ import requests
 # inspect the page
 from bs4 import BeautifulSoup
 import csv
+from functools import reduce
 from product import Product
 
 perfumes = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000001%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
@@ -86,17 +87,14 @@ def category_crawler(url):
 """
 Unify all sets of products
 
-input: sets of products from diferent categories
+input: list of sets of products from different categories
 
 output: a set containing all products from epocacosmeticos.com.br
 """
 
 
 def join_sets_of_products(products):
-
-# print the Set whith all Products in a csv
-# i = 0
-# while i < products.size():
+    return reduce((lambda x, y: x.union(y)), products)
 
 
 """
@@ -125,7 +123,3 @@ def save_csv(products):
 
     except Exception:
         print("Could not save file")
-
-
-perfum_set = category_crawler(perfumes)
-save_csv(perfum_set)
