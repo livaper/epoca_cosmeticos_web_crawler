@@ -49,13 +49,13 @@ output: tuple containing product name and title
 """
 
 
-def _get_product_name_and_title(item_url):
-    parser = _get_parser(item_url)
+def get_product(product_url):
+    parser = _get_parser(product_url)
     for product_title in parser.findAll('head'):
         product_title = product_title.title.string
     for product_name in parser.findAll('div', {'class': 'productName'}):
         product_name = product_name.string
-    return (product_name, product_title)
+    return Product(product_url, product_title, product_name)
 
 
 """
@@ -75,17 +75,16 @@ def category_crawler(url):
     #while parser.find('div', {'class': 'shelf-default'}) != None:
     for link in parser.findAll('a', {'class': 'shelf-default__product-name'}):
         product_url = link.get('href')
-        (product_name, product_title) = _get_product_name_and_title(product_url)
-        product = Product(product_url, product_name, product_title)
+        product = get_product(product_url)
         product_set.add(product)
 
         #   page += 1
         #  parser = get_parser(url + str(page))
+
     return product_set
 
-
 """
-Unify all sets of products
+Unify all sets of products in one set, assuring there is no repetition in the end, before printing in the csv
 
 input: list of sets of products from different categories
 

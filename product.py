@@ -15,7 +15,7 @@ class Product:
 
 
     def __eq__(self,other):
-        return self.url, self.title, self.name == other.url, other.title, other.product_name
+        return self.url, self.title, self.name == other.url, other.title, other.name
 
 
     def __hash__(self):
