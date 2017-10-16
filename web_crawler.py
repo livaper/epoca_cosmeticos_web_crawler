@@ -12,16 +12,16 @@ import csv
 from functools import reduce
 from product import Product
 
-perfumes = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000001%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
-cabelos = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000037%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
-maquiagem = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000004%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
-dermocosmeticos = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000130%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
-tratamentos = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000089%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
-corpo_banho = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000070%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
-unhas = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000013%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
-descontos = 'http://www.epocacosmeticos.com.br/buscapagina?fq=H%3a377&O=OrderByBestDiscountDESC&PS=48&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
-lancamentos = 'http://www.epocacosmeticos.com.br/buscapagina?fq=H%3a136&O=OrderByNameDESC&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
-brindes = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000199%2f&PS=16&sl=3d564047-8ff1-4aa8-bacd-f11730c3fce6&cc=4&sm=0&PageNumber='
+perfums_url = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000001%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
+hair_url = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000037%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
+makeup_url = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000004%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
+dermocosmetics_url = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000130%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
+treatments_url = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000089%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
+body_bath_url = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000070%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
+nails_url = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000013%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
+discounts_url = 'http://www.epocacosmeticos.com.br/buscapagina?fq=H%3a377&O=OrderByBestDiscountDESC&PS=48&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
+releases_url = 'http://www.epocacosmeticos.com.br/buscapagina?fq=H%3a136&O=OrderByNameDESC&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
+gifts_url = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000199%2f&PS=16&sl=3d564047-8ff1-4aa8-bacd-f11730c3fce6&cc=4&sm=0&PageNumber='
 
 
 
@@ -52,9 +52,11 @@ output: tuple containing product name and title
 def get_product(product_url):
     parser = _get_parser(product_url)
     for product_title in parser.findAll('head'):
-        product_title = product_title.title.string
+        if product_title != None:
+            product_title = product_title.title.string
     for product_name in parser.findAll('div', {'class': 'productName'}):
-        product_name = product_name.string
+        if product_name != None:
+            product_name = product_name.string
     return Product(product_url, product_title, product_name)
 
 
@@ -72,16 +74,23 @@ def category_crawler(url):
     parser = _get_parser(url + str(page))
     product_set = set()
 
-    #while parser.find('div', {'class': 'shelf-default'}) != None:
-    for link in parser.findAll('a', {'class': 'shelf-default__product-name'}):
-        product_url = link.get('href')
-        product = get_product(product_url)
-        product_set.add(product)
+    try:
+        while parser.find('div', {'class': 'shelf-default'}) != None:
+            for link in parser.findAll('a', {'class': 'shelf-default__product-name'}):
+                product_url = link.get('href')
+                product = get_product(product_url)
+                product_set.add(product)
 
-        #   page += 1
-        #  parser = get_parser(url + str(page))
+                # retirar!
+                print('Page '+ str(page))
+
+            page += 1
+            parser = _get_parser(url + str(page))
+    except Exception as exception:
+        print(" Exception {} ocurred when trying to crawl page {}".format(exception, url + str(page)))
 
     return product_set
+
 
 """
 Unify all sets of products in one set, assuring there is no repetition in the end, before printing in the csv
@@ -106,7 +115,6 @@ output: --
 
 
 def save_csv(products):
-
     try:
         with open('products.csv', 'w', encoding="utf-8") as csvfile:
             csvfile.write('Título, Nome, URL\n')
@@ -122,3 +130,43 @@ def save_csv(products):
 
     except Exception:
         print("Could not save file")
+
+
+def main():
+    list_of_set_of_products_possibly_with_repetition = get_products_posibly_with_repetition()
+
+    # counter = list_of_set_of_products_possibly_with_repetition[0].__len__() + \
+    # list_of_set_of_products_possibly_with_repetition[1].__len__() + \
+    # list_of_set_of_products_possibly_with_repetition[2].__len__() + \
+    # list_of_set_of_products_possibly_with_repetition[3].__len__() + \
+    # list_of_set_of_products_possibly_with_repetition[4].__len__() + \
+    # list_of_set_of_products_possibly_with_repetition[5].__len__() + \
+    # list_of_set_of_products_possibly_with_repetition[6].__len__() + \
+    # list_of_set_of_products_possibly_with_repetition[7].__len__() + \
+    # list_of_set_of_products_possibly_with_repetition[8].__len__() + \
+    # list_of_set_of_products_possibly_with_repetition[9].__len__()
+    #
+    # print('Tamanho lista com possivel repeticao ' + str(counter))
+    #
+    list_of_products_without_repetition = join_sets_of_products(list_of_set_of_products_possibly_with_repetition)
+    print('Tamanho lista sem repeticao ' + str(list_of_products_without_repetition.__len__()))
+
+    save_csv(list_of_products_without_repetition)
+
+
+def get_products_posibly_with_repetition():
+    list_of_set_of_products_possibly_with_repetition = list()
+    # ok 800 list_of_set_of_products_possibly_with_repetition.append(category_crawler(perfums_url))
+    #ok 800 list_of_set_of_products_possibly_with_repetition.append(category_crawler(hair_url))
+    list_of_set_of_products_possibly_with_repetition.append(category_crawler(makeup_url))
+    # list_of_set_of_products_possibly_with_repetition.append(category_crawler(dermocosmetics_url))
+    # list_of_set_of_products_possibly_with_repetition.append(category_crawler(treatments_url))
+    # list_of_set_of_products_possibly_with_repetition.append(category_crawler(body_bath_url))
+    # list_of_set_of_products_possibly_with_repetition.append(category_crawler(nails_url))
+    # list_of_set_of_products_possibly_with_repetition.append(category_crawler(discounts_url))
+    # list_of_set_of_products_possibly_with_repetition.append(category_crawler(releases_url))
+    # list_of_set_of_products_possibly_with_repetition.append(category_crawler(gifts_url))
+    return list_of_set_of_products_possibly_with_repetition
+
+
+main()
