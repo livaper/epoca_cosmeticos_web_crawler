@@ -109,7 +109,7 @@ def save_csv(products):
 
     try:
         with open('products.csv', 'w', encoding="utf-8") as csvfile:
-            csvfile.write('Título, Nome, URL \n')
+            csvfile.write('Título, Nome, URL\n')
             for product in products:
                 csvfile.write(product.title)
                 csvfile.write(', ')
