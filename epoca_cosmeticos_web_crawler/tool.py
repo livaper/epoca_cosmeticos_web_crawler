@@ -1,28 +1,23 @@
-r"""Command-line tool to prettify big number as millions, billions and trillions
+r"""Command-line tool to to crawl the website epocacosmeticos.com.br and list all product's name,
+    title and url in a csv
+
 Usage::
-    $ python -m prettifier.tool 12345
-    12345
-    $ python -m prettifier.tool 1234567899
-    1.2B
-    $ python -m prettifier.tool number
-    The type is not a numeric value
+    $ python3 -m epoca_cosmeticos_web_crawler.tool
+    'The file products.csv was saved in this folder with sucsess'
 """
 
 from epoca_cosmeticos_web_crawler.run import main
 
+
 def main():
     import sys
-    import ast
 
-    if len(sys.argv) != 0:
-        print('usage : python run_epoca_cosmeticos_web_crawler.py \n The call has no argument. Try again!')
-        sys.exit(1)
 
     try:
-        # Usage of ast is the safe 'eval' for string to numbers
         print(main())
+        print('The file products.csv was saved in this folder with success!')
     except Exception as e:
-        print('There was an error trying to crawl Epoca Cosmeticos Website. Please try again later')
+        print('There was an error trying to crawl Epoca Cosmeticos Website. Please call the administrator')
         sys.exit(1)
 
 
