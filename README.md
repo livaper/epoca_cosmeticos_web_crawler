@@ -36,7 +36,7 @@ Run command to install it
 	$ python3
 	>>> from epoca_cosmeticos_web_crawler.run import main
 	>>> main()
-      	'The file products.csv was saved in this folder with sucsess'
+    'The file products.csv was saved in this folder with sucsess'
 	
  
 
