@@ -1,4 +1,4 @@
-from epoca_cosmeticos_web_crawler import category_crawler, join_sets_of_products, save_csv
+from epoca_cosmeticos_web_crawler.web_crawler import category_crawler, join_sets_of_products, save_csv
 
 perfums_url = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000001%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
 hair_url = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000037%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
