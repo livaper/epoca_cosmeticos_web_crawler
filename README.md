@@ -32,8 +32,13 @@ Run command to install it
 
 <h3>Python Library</h3>
 
-  $ python3
-  >>> from epoca_cosmeticos_web_crawler.run import main
-  >>> main()
-      'The file products.csv was saved in this folder with sucsess'
+
+	$ python3
+	>>> from epoca_cosmeticos_web_crawler.run import main
+	>>> main()
+      	'The file products.csv was saved in this folder with sucsess'
+	
+ 
+
+  
       
