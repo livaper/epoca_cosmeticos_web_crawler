@@ -109,23 +109,3 @@ class WebCrawlerTest(unittest.TestCase):
             expected_csv = [row for row in csvreader]
 
         self.assertEqual(actual_csv, expected_csv)
-
-    # def crawl_and_generate_csv(self):
-
-    # Dúvida: 16 mocks só em 1 página?
-    # def test_get_set_of_products(self):
-    #     url = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000001%2f&PS=16&sl=f804bbc5-5fa8-4b8b-b93a' \
-    #                '-641c059b35b3&cc=4&sm=0&PageNumber=1'
-    #     with open('mock_files/perfums-page-1.html', 'r', encoding='utf-8') as html:
-    #         data = html.read().replace('\n', '')
-    #     with requests_mock.mock() as mock:
-    #         mock.get(url, text=data)
-    #         r = requests.get(url)
-    #         url_base = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000001%2f&PS=16&sl=f804bbc5-5fa8-4b8b' \
-    #                    '-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
-    #         actual_set = epoca_cosmeticos_web_crawler.category_crawler(url_base)
-    #
-    #     self.assertEqual(actual_set.__len__(), 16)
-
-
-    # test csv

@@ -1,16 +1,6 @@
-# Recupera os links das postagens (requests)
-# Extrai os dados (beautifulsoup)
-# Gerando saida (csv)
-# Execução
-
-
 from functools import reduce
-
-# to connect to internet
 import requests
-# inspect the page
 from bs4 import BeautifulSoup
-
 from epoca_cosmeticos_web_crawler.product import Product
 
 """
@@ -40,12 +30,13 @@ output: tuple containing product name and title
 def get_product(product_url):
     parser = _get_parser(product_url)
     for product_title in parser.findAll('head'):
-        if product_title:
-            product_title = product_title.title.string
+        product_title = product_title.title.string
+
+    # product_name is a pre-condition to have a product
     for product_name in parser.findAll('div', {'class': 'productName'}):
-        if product_name:
-            product_name = product_name.string
-    return Product(product_url, product_title, product_name)
+        product_name = product_name.string
+        return Product(product_url, product_title, product_name)
+    return None
 
 
 """
@@ -61,14 +52,12 @@ def category_crawler(url, page=1):
     parser = _get_parser(url + str(page))
     product_set = set()
 
-    if parser.find('div', {'class': 'shelf-default'}) and page <= 2 :
+    if parser.find('div', {'class': 'shelf-default'}):
         for link in parser.findAll('a', {'class': 'shelf-default__product-name'}):
             product_url = link.get('href')
             product = get_product(product_url)
-            product_set.add(product)
-
-        # retirar!
-        print('Page '+ str(page))
+            if product:
+                product_set.add(product)
         page += 1
         product_set.update(category_crawler(url, page))
     return product_set
@@ -105,8 +94,6 @@ def save_csv(products):
                 csvfile.write("{}\n".format(product_line))
 
         csvfile.close()
-        print('The file products.csv was saved in this folder with sucsess')
 
     except Exception:
         print("Could not save file")
-
