@@ -1,0 +1,6 @@
+language: python
+python:
+  - "3.6"
+
+script:
+  - python3 -m unittest -v tests.prettifier_test
