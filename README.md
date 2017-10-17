@@ -33,7 +33,7 @@ Run command to install it
 <h3>Command Line Interface</h3>
 
     $ python3 -m epoca_cosmeticos_web_crawler.tool
-    'The file products.csv was saved in this folder with sucsess'
+    'The file products.csv was saved in this folder with success'
 
 <h3>Python Library</h3>
 
@@ -41,7 +41,7 @@ Run command to install it
 	$ python3
 	>>> from epoca_cosmeticos_web_crawler.run import main
 	>>> main()
-    'The file products.csv was saved in this folder with sucsess'
+    'The file products.csv was saved in this folder with success'
 	
  
 
