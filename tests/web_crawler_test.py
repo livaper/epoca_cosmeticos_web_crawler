@@ -74,7 +74,7 @@ class WebCrawlerTest(unittest.TestCase):
     def test_extract_title_and_name_from_product(self):
         url = 'http://www.epocacosmeticos.com.br/polo-red-eau-de-toilette-ralph-lauren-perfume-masculino/p'
 
-        with open('tests/mock_files/polo-red-ralph-lauren.html', 'r', encoding='utf-8') as html:
+        with open('./mock_files/polo-red-ralph-lauren.html', 'r', encoding='utf-8') as html:
             data = html.read().replace('\n', '')
 
         with requests_mock.mock() as m:
@@ -104,7 +104,7 @@ class WebCrawlerTest(unittest.TestCase):
             csvreader = csv.reader(csvfile)
             actual_csv = [row for row in csvreader]
 
-        with open('tests/mock_files/expected_csv.csv', encoding='utf-8') as csvfile:
+        with open('./mock_files/expected_csv.csv', encoding='utf-8') as csvfile:
             csvreader = csv.reader(csvfile)
             expected_csv = [row for row in csvreader]
 

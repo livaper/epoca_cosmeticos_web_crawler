@@ -47,9 +47,7 @@ def main():
     print('Tamanho lista com possivel repeticao ' + str(total_products))
 
     # UNIQUE
-    list_of_products_without_repetition = join_sets_of_products(list_of_set_of_products_possibly_with_repetition)
-    print('Tamanho lista sem repeticao ' + str(len(list_of_products_without_repetition)))
+    list_of_products_unique = join_sets_of_products(list_of_set_of_products_possibly_with_repetition)
+    print('Tamanho lista sem repeticao ' + str(len(list_of_products_unique)))
 
-    save_csv(list_of_products_without_repetition)
-
-main()
+    save_csv(list_of_products_unique)

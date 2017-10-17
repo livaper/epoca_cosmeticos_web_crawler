@@ -105,6 +105,7 @@ def save_csv(products):
                 csvfile.write("{}\n".format(product_line))
 
         csvfile.close()
+        print('The file products.csv was saved in this folder with sucsess')
 
     except Exception:
         print("Could not save file")
