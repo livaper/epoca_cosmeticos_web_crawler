@@ -1,11 +1,11 @@
-import web_crawler
+import csv
 import unittest
-from httmock import urlmatch, HTTMock
-from bs4 import BeautifulSoup
-from product import Product
+
 import requests
 import requests_mock
-import csv
+
+from web_crawler import get_product, join_sets_of_products, save_csv
+from web_crawler.product import Product
 
 
 class WebCrawlerTest(unittest.TestCase):
@@ -80,25 +80,25 @@ class WebCrawlerTest(unittest.TestCase):
         with requests_mock.mock() as m:
             m.get(url, text=data)
             r = requests.get(url)
-            actual = web_crawler.get_product('http://www.epocacosmeticos.com.br/polo-red-eau-de-toilette-ralph-lauren-'
-                                             'perfume-masculino/p')
+            actual = get_product(url)
 
-        expected = Product(url='http://www.epocacosmeticos.com.br/polo-red-eau-de-toilette-ralph-lauren-perfume-masculino/p',
-                           title='Perfume Polo Red Ralph Lauren Masculino - Época Cosméticos',
-                           name='Polo Red Ralph Lauren - Perfume Masculino - Eau de Toilette')
+        expected = Product(
+            url=url,
+            title='Perfume Polo Red Ralph Lauren Masculino - Época Cosméticos',
+            name='Polo Red Ralph Lauren - Perfume Masculino - Eau de Toilette')
 
         self.assertEqual(actual, expected)
 
     def test_join_sets_of_products(self):
         mock_list_of_product_sets = self.mock_list_of_product_sets_setup()
 
-        actual_list_of_sets = web_crawler.join_sets_of_products(mock_list_of_product_sets)
+        actual_list_of_sets = join_sets_of_products(mock_list_of_product_sets)
 
-        self.assertEqual(actual_list_of_sets.__len__(), 6)
+        self.assertEqual(len(actual_list_of_sets), 6)
 
     def test_save_csv(self):
         list_of_products = self.mock_products()
-        web_crawler.save_csv(list_of_products)
+        save_csv(list_of_products)
 
         with open('products.csv', encoding='utf-8') as csvfile:
             csvreader = csv.reader(csvfile)
