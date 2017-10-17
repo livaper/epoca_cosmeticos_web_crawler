@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name = "Epoca Cosmeticos Web Crawler",
+    name = "Epoca_Cosmeticos_Web_Crawler",
     version = "0.1",
     packages = ['epoca_cosmeticos_web_crawler', 'tests'],
 
