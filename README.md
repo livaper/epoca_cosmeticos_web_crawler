@@ -30,6 +30,11 @@ Run command to install it
 
 <h2>Usage</h2>
 
+<h3>Command Line Interface</h3>
+
+    $ python3 -m epoca_cosmeticos_web_crawler.tool
+    'The file products.csv was saved in this folder with sucsess'
+
 <h3>Python Library</h3>
 
 
