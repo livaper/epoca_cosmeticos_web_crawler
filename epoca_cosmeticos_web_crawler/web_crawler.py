@@ -11,7 +11,7 @@ import requests
 # inspect the page
 from bs4 import BeautifulSoup
 
-from web_crawler.product import Product
+from epoca_cosmeticos_web_crawler.product import Product
 
 """
 Instantiate and return a parser from a given url

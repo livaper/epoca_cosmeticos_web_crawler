@@ -4,8 +4,8 @@ import unittest
 import requests
 import requests_mock
 
-from web_crawler import get_product, join_sets_of_products, save_csv
-from web_crawler.product import Product
+from epoca_cosmeticos_web_crawler.web_crawler import category_crawler, get_product, join_sets_of_products
+from epoca_cosmeticos_web_crawler.product import Product
 
 
 class WebCrawlerTest(unittest.TestCase):
@@ -123,7 +123,7 @@ class WebCrawlerTest(unittest.TestCase):
     #         r = requests.get(url)
     #         url_base = 'http://www.epocacosmeticos.com.br/buscapagina?fq=C%3a%2f1000001%2f&PS=16&sl=f804bbc5-5fa8-4b8b' \
     #                    '-b93a-641c059b35b3&cc=4&sm=0&PageNumber='
-    #         actual_set = web_crawler.category_crawler(url_base)
+    #         actual_set = epoca_cosmeticos_web_crawler.category_crawler(url_base)
     #
     #     self.assertEqual(actual_set.__len__(), 16)
 
