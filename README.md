@@ -43,7 +43,13 @@ Run command to install it
 	>>> main()
     'The file products.csv was saved in this folder with success'
 	
- 
+ <h2>TESTS</h2>
+
+<h3>Run tests</h3>
+
+<p>In the directory of the project epoca_cosmeticos_web_crawler, run the unittests</p>
+
+	$ python3 -m unittest -v tests.web_crawler_test
 
   
       
